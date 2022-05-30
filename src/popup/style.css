@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 16px;
+  background-color: var(--bgColor);
+  width: 300px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.handler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 1px solid; */
+}
+
+.handler label {
+  font-size: 16px;
+}

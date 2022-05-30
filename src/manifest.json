@@ -1,0 +1,25 @@
+{
+    "name": "copier",
+    "description": "",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_icon": {}
+    },
+    "icons": {},
+    "options_page": "options/index.html"
+}
