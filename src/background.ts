@@ -25,11 +25,13 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
 /** tab切换初始化 */
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (
+    // @ts-ignore
     chrome.tabs.TabStatus.COMPLETE === tab.status &&
     tab?.url.startsWith("http")
   ) {
     chrome.storage.sync.get(["whiteList"], (result) => {
       if (result.whiteList.includes(getDomain(tab?.url))) {
+        // @ts-ignore
         chrome.scripting.removeCSS({
           target: { tabId },
           files: ["inject.css"],
@@ -48,6 +50,7 @@ chrome.storage.onChanged.addListener(async (changes) => {
   const tab = await getCurrentTab();
   if (changes.whiteList?.newValue && tab.url.startsWith("http")) {
     if (changes.whiteList?.newValue.includes(getDomain(tab?.url))) {
+      // @ts-ignore
       chrome.scripting.removeCSS({
         target: { tabId: tab.id },
         files: ["inject.css"],
