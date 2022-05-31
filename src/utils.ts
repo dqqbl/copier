@@ -1,3 +1,4 @@
+// chrome.storage;
 /** 获取当前tab信息 */
 export async function getCurrentTab() {
   let queryOptions = { active: true, lastFocusedWindow: true };
@@ -14,6 +15,7 @@ export const setSyncState = (obj, fn = () => {}) => {
   chrome.storage.sync.set(obj, fn);
 };
 
+// Pick<chrome.storage.StorageArea, 'get'>
 export const getSyncState = (keys, fn = () => {}) => {
   chrome.storage.sync.get(keys, fn);
 };

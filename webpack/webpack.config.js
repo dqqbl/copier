@@ -6,8 +6,8 @@ const srcDir = path.join(__dirname, "..", "src");
 module.exports = {
   mode: "production",
   entry: {
-    popup: path.join(srcDir, "/popup/popup.ts"),
-    options: path.join(srcDir, "/options/options.ts"),
+    popup: path.join(srcDir, "/popup/popup.tsx"),
+    // options: path.join(srcDir, "/options/options.tsx"),
     background: path.join(srcDir, "background.ts"),
     // content_script: path.join(srcDir, "content_script.tsx"),
   },
@@ -26,9 +26,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: [
+          /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+          /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        ],
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // 8kb
+          },
+        },
+        generator: {
+          filename: "media/[hash][ext][query]",
+        },
       },
     ],
   },

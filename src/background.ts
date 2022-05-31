@@ -48,7 +48,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 chrome.storage.onChanged.addListener(async (changes) => {
   const tab = await getCurrentTab();
-  if (changes.whiteList?.newValue && tab.url.startsWith("http")) {
+  if (changes.whiteList?.newValue && tab?.url.startsWith("http")) {
     if (changes.whiteList?.newValue.includes(getDomain(tab?.url))) {
       // @ts-ignore
       chrome.scripting.removeCSS({
