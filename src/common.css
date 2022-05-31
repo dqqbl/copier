@@ -15,7 +15,7 @@
 
 .item {
   position: relative;
-  padding: 6px;
+  padding: 8px 4px;
 }
 
 .item:not(:last-child)::after {

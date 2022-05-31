@@ -15,15 +15,16 @@
     <span>C</span>
   </div>
   <div class="card">
-    <div class="item handler">
-      <label for="">此网站</label>
-      <input type="radio" />
-    </div>
-    <div id="current-domain" class="item">
-      www.baidu.com
-    </div>
+    <form id="popupForm">
+      <div class="item handler">
+        <label for="isOpen">此网站</label>
+        <input type="checkbox" name="isOpen" id="isOpen" />
+      </div>
+      <div id="current-domain" class="item">
+      </div>
+    </form>
   </div>
-  <script src="popup.js"></script>
+  <script src="popup.js" type="module"></script>
 </body>
 
 </html>
