@@ -16,6 +16,9 @@
 .item {
   position: relative;
   padding: 8px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .item:not(:last-child)::after {

@@ -35,6 +35,12 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
+        test: /\.less$/i,
+        // 排除node_modules
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
+      {
         test: [
           /\.(png|jpe?g|gif|svg)(\?.*)?$/,
           /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

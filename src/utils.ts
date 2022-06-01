@@ -11,11 +11,16 @@ export const getDomain = (url) => {
   return (url || "").match(/(?<=(http|https):\/\/).+?(?=\/)/)[0];
 };
 
-export const setSyncState = (obj, fn = () => {}) => {
-  chrome.storage.sync.set(obj, fn);
+export const setSyncState = (
+  items: { [key: string]: any },
+  callback: () => void = () => {}
+) => {
+  chrome.storage.sync.set(items, callback);
 };
 
-// Pick<chrome.storage.StorageArea, 'get'>
-export const getSyncState = (keys, fn = () => {}) => {
-  chrome.storage.sync.get(keys, fn);
+export const getSyncState = (
+  keys: string | string[] | { [key: string]: any } | null,
+  callback: (items: { [key: string]: any }) => void = () => {}
+) => {
+  chrome.storage.sync.get(keys, callback);
 };
