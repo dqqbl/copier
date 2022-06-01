@@ -13,9 +13,9 @@ const getDomain = (url) => {
 /** 安装初始化 */
 chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    chrome.storage.sync.set({
-      whiteList: [],
-    });
+    // chrome.storage.sync.set({
+    //   whiteList: [],
+    // });
     // chrome.tabs.create({
     //   url: "boarding/index.html",
     // });
@@ -29,19 +29,27 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     chrome.tabs.TabStatus.COMPLETE === tab.status &&
     tab?.url.startsWith("http")
   ) {
-    chrome.storage.sync.get(["whiteList"], (result) => {
-      if (result.whiteList.includes(getDomain(tab?.url))) {
-        // @ts-ignore
-        chrome.scripting.removeCSS({
-          target: { tabId },
-          files: ["inject.css"],
-        });
+    const domain = getDomain(tab?.url);
+    chrome.storage.sync.get([domain], (store) => {
+      const config = store[domain];
+      if (config) {
+        // 若配置已存在，根据配置注入css
       } else {
-        chrome.scripting.insertCSS({
-          target: { tabId },
-          files: ["inject.css"],
-        });
+        // 若配置不存在，生成新配置
       }
+
+      // if (result.whiteList.includes()) {
+      //   // @ts-ignore
+      //   chrome.scripting.removeCSS({
+      //     target: { tabId },
+      //     files: ["inject.css"],
+      //   });
+      // } else {
+      //   chrome.scripting.insertCSS({
+      //     target: { tabId },
+      //     files: ["inject.css"],
+      //   });
+      // }
     });
   }
 });
