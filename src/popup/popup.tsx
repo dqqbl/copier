@@ -37,37 +37,17 @@ const Popup = () => {
         <span>C</span>
       </header>
       <main>
-        <form>
-          <div className="card">
-            <div className="item">
-              <label className="domain">此网站</label>
-              <input
-                type="checkbox"
-                onChange={handleChecked}
-                checked={isChecked}
-              />
-            </div>
-            <div className="item domain">{domain}</div>
+        <div className="card">
+          <div className="item">
+            <label className="domain">此网站</label>
+            <input
+              type="checkbox"
+              onChange={handleChecked}
+              checked={isChecked}
+            />
           </div>
-          {/* <div className="card">
-            <div className="item">
-              <span>可复制</span>
-              <input
-                type="checkbox"
-                onChange={handleChecked}
-                checked={isChecked}
-              />
-            </div>
-            <div className="item">
-              <span>自动展开</span>
-              <input
-                type="checkbox"
-                onChange={handleChecked}
-                checked={isChecked}
-              />
-            </div>
-          </div> */}
-        </form>
+          <div className="item domain">{domain}</div>
+        </div>
       </main>
     </>
   );

@@ -1,14 +1,4 @@
-/** 获取当前tab信息 */
-async function getCurrentTab() {
-  let queryOptions = { active: true, lastFocusedWindow: true };
-  let [tab] = await chrome.tabs.query(queryOptions);
-  return tab;
-}
-
-/** 获取域名 */
-const getDomain = (url) => {
-  return (url || "").match(/(?<=(http|https):\/\/).+?(?=\/)/)[0];
-};
+import { getCurrentTab, getDomain } from "./utils";
 
 /** 安装初始化 */
 chrome.runtime.onInstalled.addListener(({ reason }) => {
@@ -22,15 +12,12 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
   }
 });
 
-/** tab切换初始化 */
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-  if (
-    // @ts-ignore
-    chrome.tabs.TabStatus.COMPLETE === tab.status &&
-    tab?.url.startsWith("http")
-  ) {
+/** 监听域名变动 */
+chrome.webNavigation.onCommitted.addListener((details) => {
+  const { url, tabId } = details;
+  if (details?.url.startsWith("http")) {
     chrome.storage.sync.get(["whiteList"], (result) => {
-      if (result.whiteList.includes(getDomain(tab?.url))) {
+      if (result.whiteList.includes(getDomain(url))) {
         // @ts-ignore
         chrome.scripting.removeCSS({
           target: { tabId },
