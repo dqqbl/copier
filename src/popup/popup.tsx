@@ -34,7 +34,7 @@ const Popup = () => {
     <>
       <header className="card">
         <h1>Copier</h1>
-        <span>C</span>
+        {/* <span>C</span> */}
       </header>
       <main>
         <form>
