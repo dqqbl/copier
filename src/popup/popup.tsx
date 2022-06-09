@@ -42,6 +42,7 @@ const Popup = () => {
             <div className="item">
               <label className="domain">此网站</label>
               <input
+                style={{ cursor: "pointer" }}
                 type="checkbox"
                 onChange={handleChecked}
                 checked={isChecked}
