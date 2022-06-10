@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
 
 /** 监听域名变动 */
 chrome.webNavigation.onCommitted.addListener((details) => {
-  const { url, tabId } = details;
+  const { url, tabId, frameId } = details;
   if (details?.url.startsWith("http")) {
     chrome.storage.sync.get(["whiteList"], (result) => {
       if (result.whiteList.includes(getDomain(url))) {
@@ -23,7 +23,8 @@ chrome.webNavigation.onCommitted.addListener((details) => {
           target: { tabId },
           files: ["inject.css"],
         });
-      } else {
+      // 仅主页面注入一次，避免重复注入
+      } else if (frameId === 0) {
         chrome.scripting.insertCSS({
           target: { tabId },
           files: ["inject.css"],
