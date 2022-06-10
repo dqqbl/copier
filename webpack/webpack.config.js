@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const srcDir = path.join(__dirname, "..", "src");
@@ -9,20 +8,11 @@ module.exports = {
     popup: path.join(srcDir, "/popup/popup.tsx"),
     // options: path.join(srcDir, "/options/options.tsx"),
     background: path.join(srcDir, "background.ts"),
-    // content_script: path.join(srcDir, "content_script.tsx"),
   },
   output: {
     path: path.join(__dirname, "../dist/js"),
     filename: "[name].js",
   },
-  // optimization: {
-  //   splitChunks: {
-  //     name: "vendor",
-  //     chunks(chunk) {
-  //       return chunk.name !== "background";
-  //     },
-  //   },
-  // },
   module: {
     rules: [
       {

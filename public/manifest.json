@@ -1,6 +1,6 @@
 {
     "name": "copier",
-    "description": "",
+    "description": "代码本天成，妙手偶得之",
     "version": "0.0.1",
     "manifest_version": 3,
     "background": {
@@ -20,6 +20,5 @@
         "default_popup": "popup.html",
         "default_icon": {}
     },
-    "icons": {},
-    "options_page": "options.html"
+    "icons": {}
 }

@@ -34,7 +34,6 @@ const Popup = () => {
     <>
       <header className="card">
         <h1>Copier</h1>
-        {/* <span>C</span> */}
       </header>
       <main>
         <form>
@@ -50,24 +49,6 @@ const Popup = () => {
             </div>
             <div className="item domain">{domain}</div>
           </div>
-          {/* <div className="card">
-            <div className="item">
-              <span>可复制</span>
-              <input
-                type="checkbox"
-                onChange={handleChecked}
-                checked={isChecked}
-              />
-            </div>
-            <div className="item">
-              <span>自动展开</span>
-              <input
-                type="checkbox"
-                onChange={handleChecked}
-                checked={isChecked}
-              />
-            </div>
-          </div> */}
         </form>
       </main>
     </>
