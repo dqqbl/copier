@@ -1,0 +1,22 @@
+{
+  "name": "copier",
+  "description": "代码本天成，妙手偶得之",
+  "version": "0.0.2",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "css": ["./inject.css"]
+    }
+  ],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "permissions": ["storage", "tabs", "activeTab", "scripting", "webNavigation"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {}
+  },
+  "icons": {}
+}
